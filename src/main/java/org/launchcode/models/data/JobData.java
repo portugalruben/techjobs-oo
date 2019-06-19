@@ -49,7 +49,7 @@ public class JobData {
         ArrayList<Job> matchingJobs = new ArrayList<>();
 
         for (Job job : jobs) {
-            if (getFieldByType(job, column).contains(value))
+            if (getFieldByType(job, column).getValue().toLowerCase().contains(value.toLowerCase()))
                 matchingJobs.add(job);
         }
 
@@ -63,17 +63,17 @@ public class JobData {
 
         for (Job job : jobs) {
 
-            if (job.getName().toLowerCase().contains(value)) {
+            if (job.getName().toLowerCase().contains(value.toLowerCase())) {
                 matchingJobs.add(job);
                 continue;
             }
 
-            for (JobFieldType column : JobFieldType.values()) {
-                if (column != JobFieldType.ALL && getFieldByType(job, column).contains(value)) {
-                    matchingJobs.add(job);
-                    break;
-                }
-            }
+//            for (JobFieldType column : JobFieldType.values()) {
+//                if (column != JobFieldType.ALL && getFieldByType(job, column).contains(value)) {
+//                    matchingJobs.add(job);
+//                    break;
+//                }
+//            }
         }
 
         return matchingJobs;
